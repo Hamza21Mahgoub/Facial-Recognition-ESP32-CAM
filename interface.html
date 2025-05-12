@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Smart Access Control System</title>
+<style>
+:root{--primary:#510082;--primary-dark:#3b0060;--primary-light:#6e2ba1;--secondary:#e0e0e0;--secondary-dark:#c0c0c0;--background:#f8f8f8;--surface:#fff;--card-border:#d8d8d8;--text-primary:#333;--text-secondary:#666;--white:#fff;--student:#007bff;--staff:#28a745;--supervisor:#ffc107}*{box-sizing:border-box;margin:0;padding:0}body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background-color:var(--background);color:var(--text-primary);line-height:1.6;padding:24px}.app-container{max-width:1100px;margin:0 auto}.app-header{text-align:center;margin-bottom:32px}.app-title{font-size:32px;font-weight:600;color:var(--primary);margin-bottom:8px}.app-subtitle{font-size:16px;font-weight:400;color:var(--text-secondary)}.app-main{display:flex;flex-direction:column;gap:24px;justify-content:center;align-items:center}.content-card{background-color:var(--surface);border-radius:12px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.1);border:1px solid var(--card-border)}.card-header{padding:16px 24px;background-color:var(--primary);color:var(--white);display:flex;justify-content:space-between;align-items:center}.card-title{font-size:20px;font-weight:500}.card-body{padding:24px}.status-display{border-radius:8px;background-color:var(--primary);color:var(--white);text-align:center;padding:16px;font-size:18px;font-weight:500;margin-top:24px;box-shadow:0 2px 4px rgba(0,0,0,.1);transition:background-color .3s ease}#stream-container{width:100%;position:relative;margin-bottom:24px}#stream{width:100%;display:block;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,.2)}.control-group{margin-bottom:24px}.control-label{display:block;font-size:16px;font-weight:500;margin-bottom:8px;color:var(--text-primary)}.text-input{width:100%;padding:16px;background-color:var(--surface);border:1px solid var(--card-border);border-radius:8px;font-size:16px;color:var(--text-primary);transition:border-color .3s ease,box-shadow .3s ease;outline:0}.text-input:focus{border-color:var(--primary);box-shadow:0 0 0 2px rgba(81,0,130,.2)}.text-input::placeholder{color:#aaa}.select-input{width:100%;padding:16px;background-color:var(--surface);border:1px solid var(--card-border);border-radius:8px;font-size:16px;color:var(--text-primary);transition:border-color .3s ease,box-shadow .3s ease;appearance:none;cursor:pointer;outline:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23333333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:48px}.select-input:focus{border-color:var(--primary);box-shadow:0 0 0 2px rgba(81,0,130,.2)}.select-input:disabled{opacity:.5;cursor:not-allowed;background-color:#f5f5f5}.button-row{display:flex;gap:16px;margin-bottom:24px}.btn{flex:1;min-height:48px;border:none;border-radius:8px;font-size:14px;font-weight:600;letter-spacing:1.25px;text-transform:uppercase;cursor:pointer;transition:all .3s ease;box-shadow:0 2px 4px rgba(0,0,0,.1)}.btn:disabled{opacity:.5;cursor:not-allowed;box-shadow:none}.btn-primary{background-color:var(--primary);color:var(--white)}.btn-primary:hover:not(:disabled){background-color:var(--primary-dark);box-shadow:0 4px 8px rgba(0,0,0,.15)}.btn-secondary{background-color:var(--secondary);color:var(--text-primary)}.btn-secondary:hover:not(:disabled){background-color:var(--secondary-dark);box-shadow:0 4px 8px rgba(0,0,0,.15)}.btn-danger{background-color:#e74c3c;color:var(--white);margin-top:16px}.btn-danger:hover:not(:disabled){background-color:#c0392b;box-shadow:0 4px 8px rgba(0,0,0,.15)}.users-list{background-color:var(--surface);border-radius:8px;padding:16px;margin-bottom:24px;border:1px solid var(--card-border)}.users-list-title{font-size:18px;font-weight:500;margin-bottom:16px;color:var(--primary)}.users-list-scroll{max-height:300px;overflow-y:auto}.users-list-scroll::-webkit-scrollbar{width:6px}.users-list-scroll::-webkit-scrollbar-track{background:rgba(0,0,0,.05)}.users-list-scroll::-webkit-scrollbar-thumb{background:var(--primary);border-radius:3px}.user-item{display:flex;align-items:center;padding:12px 16px;background-color:var(--background);border-radius:8px;margin-bottom:8px;border:1px solid var(--card-border)}.user-name{flex:1;font-weight:500;color:var(--text-primary)}.user-role{padding:4px 10px;border-radius:16px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin:0 16px}.role-student{background-color:var(--student);color:var(--white)}.role-staff{background-color:var(--staff);color:var(--white)}.role-supervisor{background-color:var(--supervisor);color:#212121}.delete-btn{width:28px;height:28px;display:flex;align-items:center;justify-content:center;background-color:#e74c3c;color:var(--white);border:none;border-radius:50%;cursor:pointer;font-size:16px;transition:all .2s ease}.delete-btn:hover{transform:scale(1.1);background-color:#c0392b}.staff-login-btn{background-color:var(--staff);color:var(--white);border:none;border-radius:4px;padding:8px 12px;font-size:14px;font-weight:600;cursor:pointer;transition:background-color .3s ease}.staff-login-btn:hover{background-color:#218838}.password-modal{position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,.8);display:flex;justify-content:center;align-items:center;z-index:1000;transition:opacity .3s ease}.password-modal.hidden{opacity:0;pointer-events:none}.password-container{background-color:var(--surface);padding:32px;border-radius:12px;width:90%;max-width:400px;box-shadow:0 10px 25px rgba(0,0,0,.3);text-align:center}.password-header{margin-bottom:24px}.password-title{font-size:24px;font-weight:600;color:var(--primary);margin-bottom:8px}.password-input{width:100%;padding:16px;margin-bottom:24px;border:1px solid var(--card-border);border-radius:8px;font-size:16px;text-align:center;letter-spacing:2px}.password-input:focus{border-color:var(--primary);box-shadow:0 0 0 2px rgba(81,0,130,.2);outline:0}.error-message{color:#e74c3c;margin-bottom:16px;font-size:14px;min-height:20px}.staff-status{font-size:14px;font-weight:500;color:var(--staff);display:none}.staff-status.active{display:inline-block}.controls-card{display:none}.controls-card.staff-authenticated{display:block}.camera-card{width:100%;max-width:500px;margin:0 auto}@media (min-width:920px){.app-main{flex-direction:row;align-items:stretch;justify-content:flex-start}.app-main.centered-main{flex-direction:row;justify-content:center}.controls-card.staff-authenticated + .camera-card{margin:0;max-width:none}.camera-card{flex:1;max-width:500px}.controls-card{flex:1}}
+</style>
+</head>
+<body>
+<div class="app-container">
+  <header class="app-header">
+    <h1 class="app-title">University of Sheffield Access Control</h1>
+    <p class="app-subtitle">Facial recognition with role-based access management</p>
+  </header>
+  
+  <main id="app-main" class="app-main centered-main">
+    <section class="content-card camera-card">
+      <div class="card-header">
+        <h2 class="card-title">Camera Feed</h2>
+        <div>
+          <span id="staff-status" class="staff-status">Staff Mode</span>
+          <button id="staff-login-btn" class="staff-login-btn">Staff Login</button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div id="stream-container" class="image-container">
+          <img id="stream" src="" alt="Camera Feed">
+        </div>
+        
+        <div class="button-row">
+          <button id="button-stream" class="btn btn-primary">Stream</button>
+          <button id="button-detect" class="btn btn-secondary">Detect</button>
+        </div>
+        
+        <div class="button-row">
+          <button id="button-recognise" class="btn btn-primary">Access Control</button>
+        </div>
+        
+        <div class="status-display" id="status-display">
+          <span id="current-status">SYSTEM READY</span>
+        </div>
+      </div>
+    </section>
+    
+    <section class="content-card controls-card" id="controls-card">
+      <div class="card-header">
+        <h2 class="card-title">System Controls</h2>
+        <button id="staff-logout-btn" class="staff-login-btn">Logout</button>
+      </div>
+      <div class="card-body">
+        <div class="control-group">
+          <label class="control-label" for="person">Name</label>
+          <input id="person" class="text-input" type="text" placeholder="Enter person's name">
+        </div>
+        
+        <div class="control-group">
+          <label class="control-label" for="hierarchy-level">Access Level</label>
+          <select id="hierarchy-level" class="select-input" disabled>
+            <option value="">Select role</option>
+            <option value="student">Student</option>
+            <option value="staff">Staff</option>
+            <option value="supervisor">Supervisor</option>
+          </select>
+        </div>
+        
+        <div class="control-group">
+          <label class="control-label" for="role-level">Role Level</label>
+          <select id="role-level" class="select-input" disabled>
+            <option value="">Select level</option>
+            <option value="1">Level 1</option>
+            <option value="2">Level 2</option>
+            <option value="3">Level 3</option>
+          </select>
+        </div>
+        
+        <div class="button-row">
+          <button id="button-capture" class="btn btn-primary" disabled>Add User</button>
+        </div>
+        
+        <div class="users-list">
+          <h3 class="users-list-title">Enrolled Users</h3>
+          <div class="users-list-scroll">
+            <ul class="users-list-items"></ul>
+          </div>
+        </div>
+        
+        <button id="delete_all" class="btn btn-danger">Delete All Users</button>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- Password Modal -->
+<div class="password-modal hidden" id="password-modal">
+  <div class="password-container">
+    <div class="password-header">
+      <h2 class="password-title">Staff Login</h2>
+      <p>Please enter your staff password to access system controls</p>
+    </div>
+    <div class="error-message" id="error-message"></div>
+    <input type="password" id="password-input" class="password-input" placeholder="Enter password">
+    <button id="submit-password" class="btn btn-primary">Login</button>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded",function(){var t=document.location.origin,n=t+":81",a="ws://"+window.location.host+":82",o=new WebSocket(a),s=document.getElementById("stream"),i=document.getElementById("person"),l=document.getElementById("button-stream"),r=document.getElementById("button-detect"),d=document.getElementById("button-capture"),c=document.getElementById("button-recognise"),u=document.getElementById("delete_all"),m=document.getElementById("hierarchy-level"),p=document.getElementById("status-display"),h=document.getElementById("current-status"),f=document.querySelector(".users-list-items"),v=document.getElementById("staff-login-btn"),g=document.getElementById("staff-logout-btn"),y=document.getElementById("password-modal"),E=document.getElementById("password-input"),b=document.getElementById("submit-password"),w=document.getElementById("error-message"),k=document.getElementById("controls-card"),L=document.getElementById("staff-status"),S="gobs",M=document.getElementById("app-main"),R=document.getElementById("role-level");localStorage.removeItem("staffAuthenticated");N();v.addEventListener("click",function(){y.classList.remove("hidden"),E.value=""});g.addEventListener("click",function(){N()});b.addEventListener("click",I);E.addEventListener("keypress",function(e){"Enter"===e.key&&I()});function I(){E.value===S?(w.textContent="",y.classList.add("hidden"),T()):(w.textContent="Incorrect password. Please try again.",E.value="")}function T(){localStorage.setItem("staffAuthenticated","true"),k.classList.add("staff-authenticated"),L.classList.add("active"),v.style.display="none",M.classList.remove("centered-main")}function N(){localStorage.removeItem("staffAuthenticated"),k.classList.remove("staff-authenticated"),L.classList.remove("active"),v.style.display="inline-block",M.classList.add("centered-main")}var A;try{A=new AudioContext}catch(e){console.log("AudioContext not supported")}function x(e,t,n){if(A)try{v=A.createOscillator(),u=A.createGain(),v.connect(u),v.frequency.value=t,v.type="square",u.connect(A.destination),u.gain.value=.01*e,v.start(A.currentTime),v.stop(A.currentTime+.001*n)}catch(e){console.log("Error creating sound")}}o.onopen=function(){console.log("Connected to "+a),h.textContent="CONNECTED"},o.onmessage=function(e){if("string"==typeof e.data)if("listface"==e.data.substr(0,8)){var t=e.data.substr(9).split(":"),n=t[0],a=t[1]||"student",l=t[2]||"1";C(n,a,l)}else"delete_faces"==e.data?B():"door_open"==e.data?(p.style.backgroundColor="#28a745",x(10,233,100),x(3,603,200)):e.data.includes("DOOR OPEN FOR")?(h.innerHTML=e.data,p.style.backgroundColor="#28a745"):e.data.includes("Access Denied")?(h.innerHTML=e.data,p.style.backgroundColor="#e74c3c"):e.data.includes("FACE NOT RECOGNISED")?(h.innerHTML=e.data,p.style.backgroundColor="#f39c12"):(h.innerHTML=e.data,p.style.backgroundColor="#510082");e.data instanceof Blob&&(s.src=URL.createObjectURL(e.data))},l.onclick=function(){o.send("stream")},r.onclick=function(){o.send("detect")},d.onclick=function(){var e=i.value,t=m.value,n=R.value||"1";o.send("capture:"+e+":"+t+":"+n)},c.onclick=function(){o.send("recognise")},u.onclick=function(){confirm("Are you sure you want to delete all registered users?")&&o.send("delete_all")},i.onkeyup=function(){""!==i.value.trim()?m.disabled=!1:(m.disabled=!0,R.disabled=!0,d.disabled=!0),D()},m.onchange=function(){if(""!==m.value){R.disabled="supervisor"===m.value;if("supervisor"===m.value){R.value="1";}else{R.value="1";R.disabled=false;}}else{R.disabled=!0;R.value="";}D()},R.onchange=function(){D()};function D(){if(""!==i.value.trim()&&""!==m.value){d.disabled=!1;}else{d.disabled=!0;}}function B(){for(;f.firstChild;)f.firstChild.remove();i.value="",m.value="",R.value="",d.disabled=!0,m.disabled=!0,R.disabled=!0}function C(e,t,n){var a=document.createElement("li");a.className="user-item";var o=document.createElement("span");o.className="user-name",o.textContent=e;var s=document.createElement("span");s.className="user-role role-"+t,s.textContent=t.toUpperCase();var i=document.createElement("button");i.className="delete-btn",i.textContent="×",i.id=e,i.addEventListener("click",function(){confirm("Remove "+e+" from the system?")&&o.send("remove:"+e)}),a.appendChild(o),a.appendChild(s),a.appendChild(i),f.appendChild(a)}d.disabled=!0,m.disabled=!0,R.disabled=!0,y.addEventListener("click",function(e){e.target===y&&y.classList.add("hidden")})});
+</script>
+</body>
+</html>
